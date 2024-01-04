@@ -29,7 +29,7 @@
                     />
                     <div class="ms-3 d-inline-block align-middle">
                       <h5 class="mb-0">
-                        <a class="text-dark text-decoration-none">
+                        <a routerLink="/shop/{{item.id}}" class="text-dark text-decoration-none">
                           {{ item.productName }}
                         </a>
                       </h5>
@@ -47,7 +47,7 @@
                     <i
                       class="fa-solid fa-square-minus me-2"
                       style="cursor: pointer; font-size: 2em; color: #14afab"
-                      (click)="removeItem(item.id)"
+                      (click)="removeItem(item.id, 1)"
                     ></i>
                     <strong style="font-size: 1.5em">{{
                       item.quantity
@@ -64,6 +64,7 @@
                 </td>
                 <td class="align-middle">
                   <i
+                    (click)="removeItem(item.id,item.quantity)"
                     class="fa fa-trash"
                     style="cursor: pointer; font-size: 2em; color: #14afab"
                   ></i>
@@ -78,7 +79,7 @@
         <div class="col-6 offset-6">
           <app-order-totals></app-order-totals>
           <div class="d-grid">
-            <a routerLink="/chakout" class="btn btn-outline-primary py-2"
+            <a routerLink="/checkout" class="btn btn-outline-primary py-2"
               >Proceed to chackout</a
             >
           </div>
