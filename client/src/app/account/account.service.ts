@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, ReplaySubject, map, of } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
-import { User } from '../shared/models/user';
+import { Address, User } from '../shared/models/user';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 
@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class AccountService {
   baseUrl = environment.apiUrl;
   // private currentUserSource = new BehaviorSubject<User | null>(null);// refresh checkout => login // initial value  null
-  private currentUserSource = new ReplaySubject<User | null>(1);//one value to be cashed// refresh home page clear cash
+  private currentUserSource = new ReplaySubject<User | null>(1); //one value to be cashed// refresh home page clear cash
   currentUser$ = this.currentUserSource.asObservable();
 
   constructor(private http: HttpClient, private router: Router) {}
@@ -67,5 +67,13 @@ export class AccountService {
     return this.http.get<boolean>(
       this.baseUrl + 'account/emailExists?email=' + email //query string parameter
     );
+  }
+
+  getUserAddress() {
+    return this.http.get<Address>(this.baseUrl + 'account/address');
+  }
+
+  updateUserAddress(address: Address) {
+    return this.http.put(this.baseUrl + 'account/address', address);
   }
 }
