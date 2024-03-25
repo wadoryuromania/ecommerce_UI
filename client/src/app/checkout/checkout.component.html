@@ -13,7 +13,8 @@
           ></app-checkout-delivery>
         </cdk-step>
         <cdk-step [label]="'Review'">
-          <app-checkout-review></app-checkout-review>
+          <app-checkout-review [appStepper]="appStepper"><!-- #appStepper --></app-checkout-review>
+
         </cdk-step>
         <cdk-step [label]="'Payment'">
           <app-checkout-payment [checkoutForm]="checkoutForm"></app-checkout-payment>

@@ -1,4 +1,4 @@
-import * as cuid from "cuid";
+import * as cuid from 'cuid';
 
 export interface BasketItem {
   id: number;
@@ -10,20 +10,23 @@ export interface BasketItem {
   type: string;
 }
 
-
-export interface IBasket {
+export interface Basket { //IBasket?
   id: string;
   items: BasketItem[];
+  clientSecret?: string;
+  paymentIntentId?: string;
+  deliveryMethodId?: number;
+  shippingPrice: number;
 }
 
-
-export class Basket implements IBasket {
+export class Basket implements Basket { //IBasket?
   id = cuid();
   items: BasketItem[] = [];
+  shippingPrice = 0;
 }
 
-export interface BasketTotals{
-shipping:number;
-subtotal:number;
-total:number;
+export interface BasketTotals {
+  shipping: number;
+  subtotal: number;
+  total: number;
 }
