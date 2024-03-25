@@ -29,7 +29,7 @@ export class CheckoutPaymentComponent implements OnInit {
   cardExpiry?: StripeCardExpiryElement;
   cardCvc?: StripeCardCvcElement;
   cardErrors: any;
-  loading = false;
+  //loading = false;
 
   constructor(
     private basketService: BasketService,
