@@ -18,5 +18,6 @@ button.nav-link {
   }
   &:disabled:not(.active) {
       color: #333;
+      background: #e9ecef;
   }
 }
