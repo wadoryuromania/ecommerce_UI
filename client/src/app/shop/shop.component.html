@@ -1,9 +1,13 @@
 <div class="container">
-  <div class="row" *ngIf="types.length>0 && brands.length>0">
+  <div class="row" *ngIf="types.length > 0 && brands.length > 0">
     <section class="col-3">
       <h5 class="ms-3">Sort</h5>
       <select class="form-select mb-4" (change)="onSortSelected($event)">
-        <option *ngFor="let sort of sortOptions" [value]="sort.value">
+        <option
+          *ngFor="let sort of sortOptions"
+          [selected]="shopParams.sort === sort.value"
+          [value]="sort.value"
+        >
           {{ sort.name }}
         </option>
       </select>
@@ -42,9 +46,19 @@
         >
         </app-paging-header>
         <div class="d-flex mt-2">
-          <input  (keyup.enter)="onSearch()" type="text" placeholder="Search" class="form-control me-2" #search />
-          <button (click)="onSearch()" class="btn btn-outline-primary mx-2">Search</button>
-          <button (click)="onReset()" class="btn btn-outline-success">Reset</button>
+          <input
+            (keyup.enter)="onSearch()"
+            type="text"
+            placeholder="Search"
+            class="form-control me-2"
+            #search
+          />
+          <button (click)="onSearch()" class="btn btn-outline-primary mx-2">
+            Search
+          </button>
+          <button (click)="onReset()" class="btn btn-outline-success">
+            Reset
+          </button>
         </div>
       </div>
       <div class="row row-cols-3 g-3 mb-4">
@@ -53,12 +67,13 @@
         </div>
       </div>
       <div *ngIf="totalCount > 0" class="d-flex justify-content-center">
-       <app-pager
-       [totalCount]="totalCount"
-       [pageSize]="shopParams.pageSize"
-       (pageChanged)="onPageChanged($event)">
-
-       </app-pager>
+        <app-pager
+          [totalCount]="totalCount"
+          [pageSize]="shopParams.pageSize"
+          [pageNumber]="shopParams.pageNumber"
+          (pageChanged)="onPageChanged($event)"
+        >
+        </app-pager>
       </div>
     </section>
   </div>
